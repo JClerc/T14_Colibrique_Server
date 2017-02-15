@@ -133,11 +133,11 @@ class PostComment
     /**
      * Set replyTo
      *
-     * @param \AppBundle\Entity\PostComment $replyTo
+     * @param \AppBundle\Entity\Post $replyTo
      *
      * @return PostComment
      */
-    public function setReplyTo(\AppBundle\Entity\PostComment $replyTo = null)
+    public function setReplyTo(\AppBundle\Entity\Post $replyTo = null)
     {
         $this->reply_to = $replyTo;
 
@@ -147,7 +147,7 @@ class PostComment
     /**
      * Get replyTo
      *
-     * @return \AppBundle\Entity\PostComment
+     * @return \AppBundle\Entity\Post
      */
     public function getReplyTo()
     {
