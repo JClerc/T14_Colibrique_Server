@@ -42,8 +42,8 @@ class PostComment
     private $author;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PostComment")
-     * @ORM\JoinColumn(name="reply_to_id", referencedColumnName="id", nullable=true)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Post", inversedBy="comments")
+     * @ORM\JoinColumn(name="reply_to_id", referencedColumnName="id")
      */
     private $reply_to;
 

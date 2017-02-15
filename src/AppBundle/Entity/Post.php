@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -73,7 +74,17 @@ class Post
      * @ORM\JoinColumn(name="promotion_id", referencedColumnName="id", nullable=true)
      */
     private $promotion;
-    
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PostComment", mappedBy="reply_to")
+     */
+    private $comments;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+    }
+
 
     /**
      * Get id
@@ -275,5 +286,39 @@ class Post
     public function getPromotion()
     {
         return $this->promotion;
+    }
+
+    /**
+     * Add comment
+     *
+     * @param \AppBundle\Entity\PostComment $comment
+     *
+     * @return Post
+     */
+    public function addComment(\AppBundle\Entity\PostComment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \AppBundle\Entity\PostComment $comment
+     */
+    public function removeComment(\AppBundle\Entity\PostComment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }
