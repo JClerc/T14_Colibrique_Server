@@ -2,20 +2,32 @@
 
 namespace AppBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Entity\User;
+use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 
-class DefaultController extends Controller
+class DefaultController extends FOSRestController
 {
-    /**
-     * @Route("/", name="homepage")
-     */
-    public function indexAction(Request $request)
+    public function getPostsAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
-        ]);
+        /** @var User $user */
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $type = $user->getUserType();
+
+        $postVisibilityRepository = $this->getDoctrine()->getRepository('AppBundle:PostVisiblity');
+        $postVisibilities = $postVisibilityRepository->findBy(['visible_by' => $type]);
+
+        $posts = [];
+
+        foreach ($postVisibilities as $postVisiblity) {
+            $posts[] = $postVisiblity->getPost();
+        }
+
+        $data = [
+            'name' => $user->getFirstName(),
+            'posts' => $posts,
+        ];
+
+        return $this->handleView($this->view($data));
     }
 }
