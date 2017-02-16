@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * UserType
@@ -37,6 +38,7 @@ class UserType
     private $code;
 
     /**
+     * @Serializer\Exclude
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\PostVisiblity", mappedBy="visible_by")
      */
     private $post_visibilities;

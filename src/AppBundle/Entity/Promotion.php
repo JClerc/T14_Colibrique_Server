@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Promotion
@@ -37,6 +38,7 @@ class Promotion
     private $label;
 
     /**
+     * @Serializer\Exclude
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Subject", mappedBy="promotion")
      */
     private $subjects;
