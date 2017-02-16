@@ -48,10 +48,10 @@ doctrine:
         dbname:   "%database_name%"
         user:     "%database_user%"
         password: "%database_password%"
-        charset:  utf8mb4
+        charset:  utf8
         default_table_options:
-          charset: utf8mb4
-          collate: utf8mb4_unicode_ci
+          charset: utf8
+          collate: utf8_unicode_ci
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
@@ -65,3 +65,40 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+# FOS
+nelmio_api_doc: ~
+
+fos_rest:
+    routing_loader:
+        default_format: json                            # All responses should be JSON formated
+        include_format: false                           # We do not include format in request, so that all responses
+                                                        # will eventually be JSON formated
+
+fos_user:
+    db_driver: orm
+    firewall_name: api                                  # Seems to be used when registering user/reseting password,
+                                                        # but since there is no "login", as so it seems to be useless in
+                                                        # our particular context, but still required by "FOSUserBundle"
+    user_class: AppBundle\Entity\User
+
+    from_email:
+        address:        noreply@jclerc.github.io
+        sender_name:    Colibrique
+
+fos_oauth_server:
+    db_driver:           orm
+    client_class:        AppBundle\Entity\Client
+    access_token_class:  AppBundle\Entity\AccessToken
+    refresh_token_class: AppBundle\Entity\RefreshToken
+    auth_code_class:     AppBundle\Entity\AuthCode
+    service:
+        user_provider: fos_user.user_provider.username_email
+#        user_provider: fos_user.user_manager             # This property will be used when valid credentials are given to load the user upon access token creation
+
+jms_serializer:
+    metadata:
+        directories:
+            FOSUB:
+                namespace_prefix: "FOS\\UserBundle"
+                path: "%kernel.root_dir%/serializer/FOSUB"
