@@ -14,13 +14,13 @@ class DefaultController extends FOSRestController
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $type = $user->getUserType();
 
-        $postVisibilityRepository = $this->getDoctrine()->getRepository('AppBundle:PostVisiblity');
+        $postVisibilityRepository = $this->getDoctrine()->getRepository('AppBundle:PostVisibility');
         $postVisibilities = $postVisibilityRepository->findBy(['visible_by' => $type]);
 
         $posts = [];
 
-        foreach ($postVisibilities as $postVisiblity) {
-            $posts[] = $postVisiblity->getPost();
+        foreach ($postVisibilities as $postVisibility) {
+            $posts[] = $postVisibility->getPost();
         }
 
         $data = [

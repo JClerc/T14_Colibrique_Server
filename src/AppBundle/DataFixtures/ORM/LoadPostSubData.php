@@ -4,7 +4,7 @@ namespace AppBundle\DataFixtures\ORM;
 
 
 use AppBundle\Entity\PostComment;
-use AppBundle\Entity\PostVisiblity;
+use AppBundle\Entity\PostVisibility;
 
 class LoadPostSubData extends AbstractLoader
 {
@@ -17,7 +17,7 @@ class LoadPostSubData extends AbstractLoader
     {
         return [
             [
-                'entity' => PostVisiblity::class,
+                'entity' => PostVisibility::class,
                 'data' => [
                     [
                         'post' => $this->getReference('post:max-random'),

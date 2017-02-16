@@ -39,7 +39,7 @@ class UserType
 
     /**
      * @Serializer\Exclude
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PostVisiblity", mappedBy="visible_by")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PostVisibility", mappedBy="visible_by")
      */
     private $post_visibilities;
 
@@ -110,11 +110,11 @@ class UserType
     /**
      * Add postVisibility
      *
-     * @param \AppBundle\Entity\PostVisiblity $postVisibility
+     * @param \AppBundle\Entity\PostVisibility $postVisibility
      *
      * @return UserType
      */
-    public function addPostVisibility(\AppBundle\Entity\PostVisiblity $postVisibility)
+    public function addPostVisibility(\AppBundle\Entity\PostVisibility $postVisibility)
     {
         $this->post_visibilities[] = $postVisibility;
 
@@ -124,9 +124,9 @@ class UserType
     /**
      * Remove postVisibility
      *
-     * @param \AppBundle\Entity\PostVisiblity $postVisibility
+     * @param \AppBundle\Entity\PostVisibility $postVisibility
      */
-    public function removePostVisibility(\AppBundle\Entity\PostVisiblity $postVisibility)
+    public function removePostVisibility(\AppBundle\Entity\PostVisibility $postVisibility)
     {
         $this->post_visibilities->removeElement($postVisibility);
     }

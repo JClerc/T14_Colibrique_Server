@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * PostVisiblity
+ * PostVisibility
  *
- * @ORM\Table(name="post_visiblity")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\PostVisiblityRepository")
+ * @ORM\Table(name="post_visibility")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PostVisibilityRepository")
  */
-class PostVisiblity
+class PostVisibility
 {
     /**
      * @var int
@@ -49,7 +49,7 @@ class PostVisiblity
      *
      * @param \AppBundle\Entity\Post $post
      *
-     * @return PostVisiblity
+     * @return PostVisibility
      */
     public function setPost(\AppBundle\Entity\Post $post = null)
     {
@@ -73,7 +73,7 @@ class PostVisiblity
      *
      * @param \AppBundle\Entity\UserType $visibleBy
      *
-     * @return PostVisiblity
+     * @return PostVisibility
      */
     public function setVisibleBy(\AppBundle\Entity\UserType $visibleBy = null)
     {
