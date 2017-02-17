@@ -2,10 +2,20 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\User;
 use JMS\Serializer\Annotation as Serializer;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 class UserController extends AbstractController
 {
+    /**
+     * @ApiDoc(
+     *     section="Users",
+     *     description="Get the user currently logged-in",
+     * )
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function getProfileAction()
     {
         return $this->respond(
@@ -16,6 +26,15 @@ class UserController extends AbstractController
         );
     }
 
+    /**
+     * @ApiDoc(
+     *     section="Users",
+     *     description="Get an user by its id",
+     * )
+     *
+     * @param $id User's id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function getUserAction($id)
     {
         $user = $this->getDoctrine()->getRepository('AppBundle:User')->find($id);
