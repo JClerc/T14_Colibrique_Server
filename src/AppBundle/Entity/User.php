@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use FOS\RestBundle\Controller\Annotations\View;
 use FOS\UserBundle\Model\User as BaseUser;
 use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\Exclude;
@@ -42,7 +43,7 @@ class User extends BaseUser
     /**
      * @var \DateTime
      *
-     * @Exclude
+     * @Serializer\Groups({"user_show"})
      * @ORM\Column(name="birthdate", type="date")
      */
     private $birthdate;

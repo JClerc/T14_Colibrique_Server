@@ -3,15 +3,23 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
+use FOS\RestBundle\Context\Context;
 use FOS\RestBundle\Controller\FOSRestController;
-use Symfony\Component\HttpFoundation\Request;
+use JMS\Serializer\Annotation as Serializer;
 
-class DefaultController extends FOSRestController
+class PostController extends FOSRestController
 {
-    public function getPostsAction(Request $request)
+    /**
+     * @return User
+     */
+    protected function getUser()
     {
-        /** @var User $user */
-        $user = $this->get('security.token_storage')->getToken()->getUser();
+        return parent::getUser();
+    }
+
+    public function getPostsAction()
+    {
+        $user = $this->getUser();
         $type = $user->getUserType();
 
         $postVisibilityRepository = $this->getDoctrine()->getRepository('AppBundle:PostVisibility');
@@ -23,11 +31,12 @@ class DefaultController extends FOSRestController
             $posts[] = $postVisibility->getPost();
         }
 
-        $data = [
-            'name' => $user->getFirstName(),
+        $view = $this->view([
             'posts' => $posts,
-        ];
+        ]);
 
-        return $this->handleView($this->view($data));
+        $view->setContext((new Context())->setGroups(['Default']));
+
+        return $this->handleView($view);
     }
 }
