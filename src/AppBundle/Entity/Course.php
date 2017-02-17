@@ -27,7 +27,7 @@ class Course
      *
      * @ORM\Column(name="drive_url", type="text", nullable=true)
      */
-    private $drive_url;
+    private $driveUrl;
 
     /**
      * @var string
@@ -41,14 +41,14 @@ class Course
      *
      * @ORM\Column(name="date_start", type="datetime")
      */
-    private $date_start;
+    private $dateStart;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_end", type="datetime")
      */
-    private $date_end;
+    private $dateEnd;
 
     /**
      * @var string
@@ -68,6 +68,9 @@ class Course
      */
     private $homeworks;
 
+    /**
+     * Course constructor
+     */
     public function __construct()
     {
         $this->homeworks = new ArrayCollection();
@@ -92,7 +95,7 @@ class Course
      */
     public function setDriveUrl($driveUrl)
     {
-        $this->drive_url = $driveUrl;
+        $this->driveUrl = $driveUrl;
 
         return $this;
     }
@@ -104,7 +107,7 @@ class Course
      */
     public function getDriveUrl()
     {
-        return $this->drive_url;
+        return $this->driveUrl;
     }
 
     /**
@@ -140,7 +143,7 @@ class Course
      */
     public function setDateStart($dateStart)
     {
-        $this->date_start = $dateStart;
+        $this->dateStart = $dateStart;
 
         return $this;
     }
@@ -152,7 +155,7 @@ class Course
      */
     public function getDateStart()
     {
-        return $this->date_start;
+        return $this->dateStart;
     }
 
     /**
@@ -164,7 +167,7 @@ class Course
      */
     public function setDateEnd($dateEnd)
     {
-        $this->date_end = $dateEnd;
+        $this->dateEnd = $dateEnd;
 
         return $this;
     }
@@ -176,7 +179,7 @@ class Course
      */
     public function getDateEnd()
     {
-        return $this->date_end;
+        return $this->dateEnd;
     }
 
     /**
@@ -206,11 +209,11 @@ class Course
     /**
      * Set subject
      *
-     * @param \AppBundle\Entity\Subject $subject
+     * @param Subject $subject
      *
      * @return Course
      */
-    public function setSubject(\AppBundle\Entity\Subject $subject = null)
+    public function setSubject(Subject $subject = null)
     {
         $this->subject = $subject;
 
@@ -220,7 +223,7 @@ class Course
     /**
      * Get subject
      *
-     * @return \AppBundle\Entity\Subject
+     * @return Subject
      */
     public function getSubject()
     {
@@ -230,11 +233,11 @@ class Course
     /**
      * Add homework
      *
-     * @param \AppBundle\Entity\Homework $homework
+     * @param Homework $homework
      *
      * @return Course
      */
-    public function addHomework(\AppBundle\Entity\Homework $homework)
+    public function addHomework(Homework $homework)
     {
         $this->homeworks[] = $homework;
 
@@ -244,9 +247,9 @@ class Course
     /**
      * Remove homework
      *
-     * @param \AppBundle\Entity\Homework $homework
+     * @param Homework $homework
      */
-    public function removeHomework(\AppBundle\Entity\Homework $homework)
+    public function removeHomework(Homework $homework)
     {
         $this->homeworks->removeElement($homework);
     }

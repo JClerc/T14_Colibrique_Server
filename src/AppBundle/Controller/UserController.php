@@ -6,6 +6,10 @@ use AppBundle\Entity\User;
 use JMS\Serializer\Annotation as Serializer;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
+/**
+ * Class UserController
+ * @package AppBundle\Controller
+ */
 class UserController extends AbstractController
 {
     /**
@@ -32,7 +36,7 @@ class UserController extends AbstractController
      *     description="Get an user by its id",
      * )
      *
-     * @param $id User's id
+     * @param int $id User's id
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function getUserAction($id)

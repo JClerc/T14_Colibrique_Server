@@ -8,6 +8,10 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ * Class LoadClientData
+ * @package AppBundle\DataFixtures\ORM
+ */
 class LoadClientData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
     /**
@@ -24,11 +28,25 @@ class LoadClientData extends AbstractFixture implements OrderedFixtureInterface,
     /** @var  ContainerInterface */
     private $container;
 
+    /**
+     * @param ContainerInterface|null $container
+     */
     public function setContainer(ContainerInterface $container = null)
     {
         $this->container = $container;
     }
 
+    /**
+     * @return int order
+     */
+    public function getOrder()
+    {
+        return 1;
+    }
+
+    /**
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
         $clientManager = $this->container->get('fos_oauth_server.client_manager.default');
@@ -50,14 +68,9 @@ class LoadClientData extends AbstractFixture implements OrderedFixtureInterface,
         } else {
             $id = $client->getPublicId();
             if (strpos($id, '1_') !== 0) {
-                echo PHP_EOL . '  [!] Warning: client_id is not prefixed with "1_"!';
-                echo PHP_EOL . '  [!] Load data using: ./db_seed'. PHP_EOL . PHP_EOL;
+                echo PHP_EOL.'  [!] Warning: client_id is not prefixed with "1_"!';
+                echo PHP_EOL.'  [!] Load data using: ./db_seed'.PHP_EOL.PHP_EOL;
             }
         }
-    }
-
-    public function getOrder()
-    {
-        return 1;
     }
 }

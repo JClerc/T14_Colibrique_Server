@@ -47,11 +47,11 @@ class ConversationMember
     /**
      * Set user
      *
-     * @param \AppBundle\Entity\User $user
+     * @param User $user
      *
      * @return ConversationMember
      */
-    public function setUser(\AppBundle\Entity\User $user = null)
+    public function setUser(User $user = null)
     {
         $this->user = $user;
 
@@ -61,7 +61,7 @@ class ConversationMember
     /**
      * Get user
      *
-     * @return \AppBundle\Entity\User
+     * @return User
      */
     public function getUser()
     {
@@ -71,11 +71,11 @@ class ConversationMember
     /**
      * Set conversation
      *
-     * @param \AppBundle\Entity\Conversation $conversation
+     * @param Conversation $conversation
      *
      * @return ConversationMember
      */
-    public function setConversation(\AppBundle\Entity\Conversation $conversation = null)
+    public function setConversation(Conversation $conversation = null)
     {
         $this->conversation = $conversation;
 
@@ -85,7 +85,7 @@ class ConversationMember
     /**
      * Get conversation
      *
-     * @return \AppBundle\Entity\Conversation
+     * @return Conversation
      */
     public function getConversation()
     {

@@ -18,6 +18,9 @@ class Client extends BaseClient
      */
     protected $id;
 
+    /**
+     * Client constructor
+     */
     public function __construct()
     {
         parent::__construct();

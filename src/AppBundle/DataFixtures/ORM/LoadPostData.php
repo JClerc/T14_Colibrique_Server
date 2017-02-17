@@ -4,8 +4,15 @@ namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Post;
 
+/**
+ * Class LoadPostData
+ * @package AppBundle\DataFixtures\ORM
+ */
 class LoadPostData extends AbstractLoader
 {
+    /**
+     * @return int order
+     */
     public function getOrder()
     {
         return 3;

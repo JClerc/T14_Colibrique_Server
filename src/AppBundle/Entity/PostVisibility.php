@@ -28,10 +28,10 @@ class PostVisibility
     private $post;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\UserType", inversedBy="post_visibilities")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\UserType", inversedBy="postVisibilities")
      * @ORM\JoinColumn(name="visible_by_id", referencedColumnName="id")
      */
-    private $visible_by;
+    private $visibleBy;
 
 
     /**
@@ -47,11 +47,11 @@ class PostVisibility
     /**
      * Set post
      *
-     * @param \AppBundle\Entity\Post $post
+     * @param Post $post
      *
      * @return PostVisibility
      */
-    public function setPost(\AppBundle\Entity\Post $post = null)
+    public function setPost(Post $post = null)
     {
         $this->post = $post;
 
@@ -61,7 +61,7 @@ class PostVisibility
     /**
      * Get post
      *
-     * @return \AppBundle\Entity\Post
+     * @return Post
      */
     public function getPost()
     {
@@ -71,13 +71,13 @@ class PostVisibility
     /**
      * Set visibleBy
      *
-     * @param \AppBundle\Entity\UserType $visibleBy
+     * @param UserType $visibleBy
      *
      * @return PostVisibility
      */
-    public function setVisibleBy(\AppBundle\Entity\UserType $visibleBy = null)
+    public function setVisibleBy(UserType $visibleBy = null)
     {
-        $this->visible_by = $visibleBy;
+        $this->visibleBy = $visibleBy;
 
         return $this;
     }
@@ -85,10 +85,10 @@ class PostVisibility
     /**
      * Get visibleBy
      *
-     * @return \AppBundle\Entity\UserType
+     * @return UserType
      */
     public function getVisibleBy()
     {
-        return $this->visible_by;
+        return $this->visibleBy;
     }
 }

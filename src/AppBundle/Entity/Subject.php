@@ -34,7 +34,7 @@ class Subject
      *
      * @ORM\Column(name="school_year", type="integer")
      */
-    private $school_year;
+    private $schoolYear;
 
     /**
      * @var int
@@ -60,6 +60,9 @@ class Subject
      */
     private $courses;
 
+    /**
+     * Subject constructor
+     */
     public function __construct()
     {
         $this->courses = new ArrayCollection();
@@ -108,7 +111,7 @@ class Subject
      */
     public function setSchoolYear($schoolYear)
     {
-        $this->school_year = $schoolYear;
+        $this->schoolYear = $schoolYear;
 
         return $this;
     }
@@ -120,7 +123,7 @@ class Subject
      */
     public function getSchoolYear()
     {
-        return $this->school_year;
+        return $this->schoolYear;
     }
 
     /**
@@ -150,11 +153,11 @@ class Subject
     /**
      * Set professor
      *
-     * @param \AppBundle\Entity\User $professor
+     * @param User $professor
      *
      * @return Subject
      */
-    public function setProfessor(\AppBundle\Entity\User $professor = null)
+    public function setProfessor(User $professor = null)
     {
         $this->professor = $professor;
 
@@ -164,7 +167,7 @@ class Subject
     /**
      * Get professor
      *
-     * @return \AppBundle\Entity\User
+     * @return User
      */
     public function getProfessor()
     {
@@ -174,11 +177,11 @@ class Subject
     /**
      * Set promotion
      *
-     * @param \AppBundle\Entity\Promotion $promotion
+     * @param Promotion $promotion
      *
      * @return Subject
      */
-    public function setPromotion(\AppBundle\Entity\Promotion $promotion = null)
+    public function setPromotion(Promotion $promotion = null)
     {
         $this->promotion = $promotion;
 
@@ -188,7 +191,7 @@ class Subject
     /**
      * Get promotion
      *
-     * @return \AppBundle\Entity\Promotion
+     * @return Promotion
      */
     public function getPromotion()
     {
@@ -198,11 +201,11 @@ class Subject
     /**
      * Add course
      *
-     * @param \AppBundle\Entity\Course $course
+     * @param Course $course
      *
      * @return Subject
      */
-    public function addCourse(\AppBundle\Entity\Course $course)
+    public function addCourse(Course $course)
     {
         $this->courses[] = $course;
 
@@ -212,9 +215,9 @@ class Subject
     /**
      * Remove course
      *
-     * @param \AppBundle\Entity\Course $course
+     * @param Course $course
      */
-    public function removeCourse(\AppBundle\Entity\Course $course)
+    public function removeCourse(Course $course)
     {
         $this->courses->removeElement($course);
     }

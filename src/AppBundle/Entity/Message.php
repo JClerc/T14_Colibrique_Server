@@ -109,11 +109,11 @@ class Message
     /**
      * Set author
      *
-     * @param \AppBundle\Entity\User $author
+     * @param User $author
      *
      * @return Message
      */
-    public function setAuthor(\AppBundle\Entity\User $author = null)
+    public function setAuthor(User $author = null)
     {
         $this->author = $author;
 
@@ -123,7 +123,7 @@ class Message
     /**
      * Get author
      *
-     * @return \AppBundle\Entity\User
+     * @return User
      */
     public function getAuthor()
     {
@@ -133,11 +133,11 @@ class Message
     /**
      * Set conversation
      *
-     * @param \AppBundle\Entity\Conversation $conversation
+     * @param Conversation $conversation
      *
      * @return Message
      */
-    public function setConversation(\AppBundle\Entity\Conversation $conversation = null)
+    public function setConversation(Conversation $conversation = null)
     {
         $this->conversation = $conversation;
 
@@ -147,7 +147,7 @@ class Message
     /**
      * Get conversation
      *
-     * @return \AppBundle\Entity\Conversation
+     * @return Conversation
      */
     public function getConversation()
     {

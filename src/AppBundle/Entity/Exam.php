@@ -72,11 +72,11 @@ class Exam
     /**
      * Set course
      *
-     * @param \AppBundle\Entity\Course $course
+     * @param Course $course
      *
      * @return Exam
      */
-    public function setCourse(\AppBundle\Entity\Course $course = null)
+    public function setCourse(Course $course = null)
     {
         $this->course = $course;
 
@@ -86,7 +86,7 @@ class Exam
     /**
      * Get course
      *
-     * @return \AppBundle\Entity\Course
+     * @return Course
      */
     public function getCourse()
     {

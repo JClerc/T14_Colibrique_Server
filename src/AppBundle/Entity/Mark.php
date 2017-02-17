@@ -33,7 +33,7 @@ class Mark
      *
      * @ORM\Column(name="out_of", type="integer")
      */
-    private $out_of;
+    private $outOf;
 
     /**
      * @var int
@@ -124,7 +124,7 @@ class Mark
      */
     public function setOutOf($outOf)
     {
-        $this->out_of = $outOf;
+        $this->outOf = $outOf;
 
         return $this;
     }
@@ -136,7 +136,7 @@ class Mark
      */
     public function getOutOf()
     {
-        return $this->out_of;
+        return $this->outOf;
     }
 
     /**
@@ -214,11 +214,11 @@ class Mark
     /**
      * Set student
      *
-     * @param \AppBundle\Entity\User $student
+     * @param User $student
      *
      * @return Mark
      */
-    public function setStudent(\AppBundle\Entity\User $student = null)
+    public function setStudent(User $student = null)
     {
         $this->student = $student;
 
@@ -228,7 +228,7 @@ class Mark
     /**
      * Get student
      *
-     * @return \AppBundle\Entity\User
+     * @return User
      */
     public function getStudent()
     {
@@ -238,11 +238,11 @@ class Mark
     /**
      * Set course
      *
-     * @param \AppBundle\Entity\Course $course
+     * @param Course $course
      *
      * @return Mark
      */
-    public function setCourse(\AppBundle\Entity\Course $course = null)
+    public function setCourse(Course $course = null)
     {
         $this->course = $course;
 
@@ -252,7 +252,7 @@ class Mark
     /**
      * Get course
      *
-     * @return \AppBundle\Entity\Course
+     * @return Course
      */
     public function getCourse()
     {
@@ -262,11 +262,11 @@ class Mark
     /**
      * Set exam
      *
-     * @param \AppBundle\Entity\Exam $exam
+     * @param Exam $exam
      *
      * @return Mark
      */
-    public function setExam(\AppBundle\Entity\Exam $exam = null)
+    public function setExam(Exam $exam = null)
     {
         $this->exam = $exam;
 
@@ -276,7 +276,7 @@ class Mark
     /**
      * Get exam
      *
-     * @return \AppBundle\Entity\Exam
+     * @return Exam
      */
     public function getExam()
     {
@@ -286,11 +286,11 @@ class Mark
     /**
      * Set work
      *
-     * @param \AppBundle\Entity\Work $work
+     * @param Work $work
      *
      * @return Mark
      */
-    public function setWork(\AppBundle\Entity\Work $work = null)
+    public function setWork(Work $work = null)
     {
         $this->work = $work;
 
@@ -300,7 +300,7 @@ class Mark
     /**
      * Get work
      *
-     * @return \AppBundle\Entity\Work
+     * @return Work
      */
     public function getWork()
     {

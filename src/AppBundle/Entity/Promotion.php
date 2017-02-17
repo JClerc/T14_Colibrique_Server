@@ -43,6 +43,9 @@ class Promotion
      */
     private $subjects;
 
+    /**
+     * Promotion constructor
+     */
     public function __construct()
     {
         $this->subjects = new ArrayCollection();
@@ -109,11 +112,11 @@ class Promotion
     /**
      * Add subject
      *
-     * @param \AppBundle\Entity\Subject $subject
+     * @param Subject $subject
      *
      * @return Promotion
      */
-    public function addSubject(\AppBundle\Entity\Subject $subject)
+    public function addSubject(Subject $subject)
     {
         $this->subjects[] = $subject;
 
@@ -123,9 +126,9 @@ class Promotion
     /**
      * Remove subject
      *
-     * @param \AppBundle\Entity\Subject $subject
+     * @param Subject $subject
      */
-    public function removeSubject(\AppBundle\Entity\Subject $subject)
+    public function removeSubject(Subject $subject)
     {
         $this->subjects->removeElement($subject);
     }

@@ -7,6 +7,10 @@ use FOS\RestBundle\Controller\Annotations\QueryParam;
 use JMS\Serializer\Annotation as Serializer;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
+/**
+ * Class PostController
+ * @package AppBundle\Controller
+ */
 class PostController extends AbstractController
 {
     /**
@@ -18,6 +22,7 @@ class PostController extends AbstractController
      * @QueryParam(name="page", requirements="\d+", default="1", description="For pagination.")
      * @QueryParam(name="count", requirements="\d+", default="20", description="How many needed.")
      * @param int $page
+     * @param int $count
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function getPostsAction($page, $count)
@@ -31,7 +36,7 @@ class PostController extends AbstractController
         $postVisibilityRepository = $this->getDoctrine()->getRepository('AppBundle:PostVisibility');
 
         $postVisibilities = $postVisibilityRepository->findBy(
-            ['visible_by' => $type],
+            ['visibleBy' => $type],
             null,
             $count,
             ($page - 1) * $count
@@ -45,7 +50,9 @@ class PostController extends AbstractController
         );
 
         return $this->respond(
-            ['posts' => $posts,]
+            [
+                'posts' => $posts,
+            ]
         );
     }
 

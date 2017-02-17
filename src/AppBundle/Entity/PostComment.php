@@ -33,7 +33,7 @@ class PostComment
      *
      * @ORM\Column(name="posted_at", type="datetime")
      */
-    private $posted_at;
+    private $postedAt;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
@@ -45,7 +45,7 @@ class PostComment
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Post", inversedBy="comments")
      * @ORM\JoinColumn(name="reply_to_id", referencedColumnName="id")
      */
-    private $reply_to;
+    private $replyTo;
 
 
     /**
@@ -91,7 +91,7 @@ class PostComment
      */
     public function setPostedAt($postedAt)
     {
-        $this->posted_at = $postedAt;
+        $this->postedAt = $postedAt;
 
         return $this;
     }
@@ -103,17 +103,17 @@ class PostComment
      */
     public function getPostedAt()
     {
-        return $this->posted_at;
+        return $this->postedAt;
     }
 
     /**
      * Set author
      *
-     * @param \AppBundle\Entity\User $author
+     * @param User $author
      *
      * @return PostComment
      */
-    public function setAuthor(\AppBundle\Entity\User $author = null)
+    public function setAuthor(User $author = null)
     {
         $this->author = $author;
 
@@ -123,7 +123,7 @@ class PostComment
     /**
      * Get author
      *
-     * @return \AppBundle\Entity\User
+     * @return User
      */
     public function getAuthor()
     {
@@ -133,13 +133,13 @@ class PostComment
     /**
      * Set replyTo
      *
-     * @param \AppBundle\Entity\Post $replyTo
+     * @param Post $replyTo
      *
      * @return PostComment
      */
-    public function setReplyTo(\AppBundle\Entity\Post $replyTo = null)
+    public function setReplyTo(Post $replyTo = null)
     {
-        $this->reply_to = $replyTo;
+        $this->replyTo = $replyTo;
 
         return $this;
     }
@@ -147,10 +147,10 @@ class PostComment
     /**
      * Get replyTo
      *
-     * @return \AppBundle\Entity\Post
+     * @return Post
      */
     public function getReplyTo()
     {
-        return $this->reply_to;
+        return $this->replyTo;
     }
 }

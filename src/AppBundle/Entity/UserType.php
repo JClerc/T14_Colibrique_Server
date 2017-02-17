@@ -39,13 +39,16 @@ class UserType
 
     /**
      * @Serializer\Exclude
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PostVisibility", mappedBy="visible_by")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PostVisibility", mappedBy="visibleBy")
      */
-    private $post_visibilities;
+    private $postVisibilities;
 
+    /**
+     * UserType constructor
+     */
     public function __construct()
     {
-        $this->post_visibilities = new ArrayCollection();
+        $this->postVisibilities = new ArrayCollection();
     }
 
 
@@ -110,13 +113,13 @@ class UserType
     /**
      * Add postVisibility
      *
-     * @param \AppBundle\Entity\PostVisibility $postVisibility
+     * @param PostVisibility $postVisibility
      *
      * @return UserType
      */
-    public function addPostVisibility(\AppBundle\Entity\PostVisibility $postVisibility)
+    public function addPostVisibility(PostVisibility $postVisibility)
     {
-        $this->post_visibilities[] = $postVisibility;
+        $this->postVisibilities[] = $postVisibility;
 
         return $this;
     }
@@ -124,11 +127,11 @@ class UserType
     /**
      * Remove postVisibility
      *
-     * @param \AppBundle\Entity\PostVisibility $postVisibility
+     * @param PostVisibility $postVisibility
      */
-    public function removePostVisibility(\AppBundle\Entity\PostVisibility $postVisibility)
+    public function removePostVisibility(PostVisibility $postVisibility)
     {
-        $this->post_visibilities->removeElement($postVisibility);
+        $this->postVisibilities->removeElement($postVisibility);
     }
 
     /**
@@ -138,6 +141,6 @@ class UserType
      */
     public function getPostVisibilities()
     {
-        return $this->post_visibilities;
+        return $this->postVisibilities;
     }
 }

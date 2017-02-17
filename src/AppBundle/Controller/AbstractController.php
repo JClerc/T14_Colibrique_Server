@@ -6,6 +6,10 @@ use AppBundle\Entity\User;
 use FOS\RestBundle\Context\Context;
 use FOS\RestBundle\Controller\FOSRestController;
 
+/**
+ * Class AbstractController
+ * @package AppBundle\Controller
+ */
 class AbstractController extends FOSRestController
 {
     /**

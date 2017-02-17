@@ -6,8 +6,15 @@ use AppBundle\Entity\Category;
 use AppBundle\Entity\Promotion;
 use AppBundle\Entity\UserType;
 
+/**
+ * Class LoadBaseData
+ * @package AppBundle\DataFixtures\ORM
+ */
 class LoadBaseData extends AbstractLoader
 {
+    /**
+     * @return int order
+     */
     public function getOrder()
     {
         return 1;

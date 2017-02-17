@@ -4,8 +4,15 @@ namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\User;
 
+/**
+ * Class LoadUserData
+ * @package AppBundle\DataFixtures\ORM
+ */
 class LoadUserData extends AbstractLoader
 {
+    /**
+     * @return int order
+     */
     public function getOrder()
     {
         return 2;

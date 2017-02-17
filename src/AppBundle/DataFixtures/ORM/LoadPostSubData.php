@@ -5,8 +5,15 @@ namespace AppBundle\DataFixtures\ORM;
 use AppBundle\Entity\PostComment;
 use AppBundle\Entity\PostVisibility;
 
+/**
+ * Class LoadPostSubData
+ * @package AppBundle\DataFixtures\ORM
+ */
 class LoadPostSubData extends AbstractLoader
 {
+    /**
+     * @return int order
+     */
     public function getOrder()
     {
         return 4;

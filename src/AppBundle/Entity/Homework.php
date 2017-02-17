@@ -48,7 +48,7 @@ class Homework
      *
      * @ORM\Column(name="has_attachment", type="boolean")
      */
-    private $has_attachment;
+    private $hasAttachment;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Course", inversedBy="homeworks")
@@ -61,6 +61,9 @@ class Homework
      */
     private $works;
 
+    /**
+     * Homework constructor
+     */
     public function __construct()
     {
         $this->works = new ArrayCollection();
@@ -157,7 +160,7 @@ class Homework
      */
     public function setHasAttachment($hasAttachment)
     {
-        $this->has_attachment = $hasAttachment;
+        $this->hasAttachment = $hasAttachment;
 
         return $this;
     }
@@ -169,17 +172,17 @@ class Homework
      */
     public function getHasAttachment()
     {
-        return $this->has_attachment;
+        return $this->hasAttachment;
     }
 
     /**
      * Set course
      *
-     * @param \AppBundle\Entity\Course $course
+     * @param Course $course
      *
      * @return Homework
      */
-    public function setCourse(\AppBundle\Entity\Course $course = null)
+    public function setCourse(Course $course = null)
     {
         $this->course = $course;
 
@@ -189,7 +192,7 @@ class Homework
     /**
      * Get course
      *
-     * @return \AppBundle\Entity\Course
+     * @return Course
      */
     public function getCourse()
     {
@@ -199,11 +202,11 @@ class Homework
     /**
      * Add work
      *
-     * @param \AppBundle\Entity\Work $work
+     * @param Work $work
      *
      * @return Homework
      */
-    public function addWork(\AppBundle\Entity\Work $work)
+    public function addWork(Work $work)
     {
         $this->works[] = $work;
 
@@ -213,9 +216,9 @@ class Homework
     /**
      * Remove work
      *
-     * @param \AppBundle\Entity\Work $work
+     * @param Work $work
      */
-    public function removeWork(\AppBundle\Entity\Work $work)
+    public function removeWork(Work $work)
     {
         $this->works->removeElement($work);
     }

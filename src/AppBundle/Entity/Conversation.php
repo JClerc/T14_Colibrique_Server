@@ -27,7 +27,7 @@ class Conversation
      *
      * @ORM\Column(name="is_group", type="boolean")
      */
-    private $is_group;
+    private $isGroup;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
@@ -40,6 +40,9 @@ class Conversation
      */
     private $messages;
 
+    /**
+     * Conversation constructor
+     */
     public function __construct()
     {
         $this->messages = new ArrayCollection();
@@ -48,35 +51,11 @@ class Conversation
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set author
-     *
-     * @param \AppBundle\Entity\User $author
-     *
-     * @return Conversation
-     */
-    public function setAuthor(\AppBundle\Entity\User $author = null)
-    {
-        $this->author = $author;
-
-        return $this;
-    }
-
-    /**
-     * Get author
-     *
-     * @return \AppBundle\Entity\User
-     */
-    public function getAuthor()
-    {
-        return $this->author;
     }
 
     /**
@@ -88,7 +67,7 @@ class Conversation
      */
     public function setIsGroup($isGroup)
     {
-        $this->is_group = $isGroup;
+        $this->isGroup = $isGroup;
 
         return $this;
     }
@@ -100,17 +79,41 @@ class Conversation
      */
     public function getIsGroup()
     {
-        return $this->is_group;
+        return $this->isGroup;
+    }
+
+    /**
+     * Set author
+     *
+     * @param User $author
+     *
+     * @return Conversation
+     */
+    public function setAuthor(User $author = null)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return User
+     */
+    public function getAuthor()
+    {
+        return $this->author;
     }
 
     /**
      * Add message
      *
-     * @param \AppBundle\Entity\Message $message
+     * @param Message $message
      *
      * @return Conversation
      */
-    public function addMessage(\AppBundle\Entity\Message $message)
+    public function addMessage(Message $message)
     {
         $this->messages[] = $message;
 
@@ -120,9 +123,9 @@ class Conversation
     /**
      * Remove message
      *
-     * @param \AppBundle\Entity\Message $message
+     * @param Message $message
      */
-    public function removeMessage(\AppBundle\Entity\Message $message)
+    public function removeMessage(Message $message)
     {
         $this->messages->removeElement($message);
     }

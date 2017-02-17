@@ -34,14 +34,14 @@ class Post
      *
      * @ORM\Column(name="posted_at", type="datetime")
      */
-    private $posted_at;
+    private $postedAt;
 
     /**
      * @var int
      *
      * @ORM\Column(name="attachments_count", type="integer")
      */
-    private $attachments_count;
+    private $attachmentsCount;
 
     /**
      * @var \DateTime
@@ -76,10 +76,13 @@ class Post
     private $promotion;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PostComment", mappedBy="reply_to")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PostComment", mappedBy="replyTo")
      */
     private $comments;
 
+    /**
+     * Post constructor
+     */
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -129,7 +132,7 @@ class Post
      */
     public function setPostedAt($postedAt)
     {
-        $this->posted_at = $postedAt;
+        $this->postedAt = $postedAt;
 
         return $this;
     }
@@ -141,7 +144,7 @@ class Post
      */
     public function getPostedAt()
     {
-        return $this->posted_at;
+        return $this->postedAt;
     }
 
     /**
@@ -153,7 +156,7 @@ class Post
      */
     public function setAttachmentsCount($attachmentsCount)
     {
-        $this->attachments_count = $attachmentsCount;
+        $this->attachmentsCount = $attachmentsCount;
 
         return $this;
     }
@@ -165,7 +168,7 @@ class Post
      */
     public function getAttachmentsCount()
     {
-        return $this->attachments_count;
+        return $this->attachmentsCount;
     }
 
     /**
@@ -219,11 +222,11 @@ class Post
     /**
      * Set author
      *
-     * @param \AppBundle\Entity\User $author
+     * @param User $author
      *
      * @return Post
      */
-    public function setAuthor(\AppBundle\Entity\User $author = null)
+    public function setAuthor(User $author = null)
     {
         $this->author = $author;
 
@@ -233,7 +236,7 @@ class Post
     /**
      * Get author
      *
-     * @return \AppBundle\Entity\User
+     * @return User
      */
     public function getAuthor()
     {
@@ -243,11 +246,11 @@ class Post
     /**
      * Set category
      *
-     * @param \AppBundle\Entity\Category $category
+     * @param Category $category
      *
      * @return Post
      */
-    public function setCategory(\AppBundle\Entity\Category $category = null)
+    public function setCategory(Category $category = null)
     {
         $this->category = $category;
 
@@ -257,7 +260,7 @@ class Post
     /**
      * Get category
      *
-     * @return \AppBundle\Entity\Category
+     * @return Category
      */
     public function getCategory()
     {
@@ -267,11 +270,11 @@ class Post
     /**
      * Set promotion
      *
-     * @param \AppBundle\Entity\Promotion $promotion
+     * @param Promotion $promotion
      *
      * @return Post
      */
-    public function setPromotion(\AppBundle\Entity\Promotion $promotion = null)
+    public function setPromotion(Promotion $promotion = null)
     {
         $this->promotion = $promotion;
 
@@ -281,7 +284,7 @@ class Post
     /**
      * Get promotion
      *
-     * @return \AppBundle\Entity\Promotion
+     * @return Promotion
      */
     public function getPromotion()
     {
@@ -291,11 +294,11 @@ class Post
     /**
      * Add comment
      *
-     * @param \AppBundle\Entity\PostComment $comment
+     * @param PostComment $comment
      *
      * @return Post
      */
-    public function addComment(\AppBundle\Entity\PostComment $comment)
+    public function addComment(PostComment $comment)
     {
         $this->comments[] = $comment;
 
@@ -305,9 +308,9 @@ class Post
     /**
      * Remove comment
      *
-     * @param \AppBundle\Entity\PostComment $comment
+     * @param PostComment $comment
      */
-    public function removeComment(\AppBundle\Entity\PostComment $comment)
+    public function removeComment(PostComment $comment)
     {
         $this->comments->removeElement($comment);
     }

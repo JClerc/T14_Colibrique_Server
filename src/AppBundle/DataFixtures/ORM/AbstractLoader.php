@@ -6,15 +6,22 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
+/**
+ * Class AbstractLoader
+ * @package AppBundle\DataFixtures\ORM
+ */
 abstract class AbstractLoader extends AbstractFixture implements OrderedFixtureInterface
 {
-
+    /**
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
 
         foreach ($this->getData() as $data) {
             foreach ($data['data'] as $fill) {
-                $entity = new $data['entity'];
+                $className = $data['entity'];
+                $entity = new $className();
                 $prefix = strtolower((new \ReflectionClass($entity))->getShortName());
                 $manager->persist($this->populate($prefix, $entity, $fill));
             }

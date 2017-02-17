@@ -4,7 +4,6 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use FOS\RestBundle\Controller\Annotations\View;
 use FOS\UserBundle\Model\User as BaseUser;
 use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\Exclude;
@@ -31,14 +30,14 @@ class User extends BaseUser
      *
      * @ORM\Column(name="first_name", type="string", length=100)
      */
-    private $first_name;
+    private $firstName;
 
     /**
      * @var string
      *
      * @ORM\Column(name="last_name", type="string", length=100)
      */
-    private $last_name;
+    private $lastName;
 
     /**
      * @var \DateTime
@@ -52,7 +51,7 @@ class User extends BaseUser
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\UserType")
      * @ORM\JoinColumn(name="user_type_id", referencedColumnName="id")
      */
-    private $user_type;
+    private $userType;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Promotion")
@@ -72,6 +71,9 @@ class User extends BaseUser
      */
     private $conversationsMember;
 
+    /**
+     * User constructor
+     */
     public function __construct()
     {
         parent::__construct();
@@ -99,7 +101,7 @@ class User extends BaseUser
      */
     public function setFirstName($firstName)
     {
-        $this->first_name = $firstName;
+        $this->firstName = $firstName;
 
         return $this;
     }
@@ -111,7 +113,7 @@ class User extends BaseUser
      */
     public function getFirstName()
     {
-        return $this->first_name;
+        return $this->firstName;
     }
 
     /**
@@ -123,7 +125,7 @@ class User extends BaseUser
      */
     public function setLastName($lastName)
     {
-        $this->last_name = $lastName;
+        $this->lastName = $lastName;
 
         return $this;
     }
@@ -135,7 +137,7 @@ class User extends BaseUser
      */
     public function getLastName()
     {
-        return $this->last_name;
+        return $this->lastName;
     }
 
     /**
@@ -165,13 +167,13 @@ class User extends BaseUser
     /**
      * Set userType
      *
-     * @param \AppBundle\Entity\UserType $userType
+     * @param UserType $userType
      *
      * @return User
      */
-    public function setUserType(\AppBundle\Entity\UserType $userType = null)
+    public function setUserType(UserType $userType = null)
     {
-        $this->user_type = $userType;
+        $this->userType = $userType;
 
         return $this;
     }
@@ -179,21 +181,21 @@ class User extends BaseUser
     /**
      * Get userType
      *
-     * @return \AppBundle\Entity\UserType
+     * @return UserType
      */
     public function getUserType()
     {
-        return $this->user_type;
+        return $this->userType;
     }
 
     /**
      * Set promotion
      *
-     * @param \AppBundle\Entity\Promotion $promotion
+     * @param Promotion $promotion
      *
      * @return User
      */
-    public function setPromotion(\AppBundle\Entity\Promotion $promotion = null)
+    public function setPromotion(Promotion $promotion = null)
     {
         $this->promotion = $promotion;
 
@@ -203,7 +205,7 @@ class User extends BaseUser
     /**
      * Get promotion
      *
-     * @return \AppBundle\Entity\Promotion
+     * @return Promotion
      */
     public function getPromotion()
     {
@@ -213,11 +215,11 @@ class User extends BaseUser
     /**
      * Add mark
      *
-     * @param \AppBundle\Entity\Mark $mark
+     * @param Mark $mark
      *
      * @return User
      */
-    public function addMark(\AppBundle\Entity\Mark $mark)
+    public function addMark(Mark $mark)
     {
         $this->marks[] = $mark;
 
@@ -227,9 +229,9 @@ class User extends BaseUser
     /**
      * Remove mark
      *
-     * @param \AppBundle\Entity\Mark $mark
+     * @param Mark $mark
      */
-    public function removeMark(\AppBundle\Entity\Mark $mark)
+    public function removeMark(Mark $mark)
     {
         $this->marks->removeElement($mark);
     }
@@ -247,11 +249,11 @@ class User extends BaseUser
     /**
      * Add conversationsMember
      *
-     * @param \AppBundle\Entity\ConversationMember $conversationsMember
+     * @param ConversationMember $conversationsMember
      *
      * @return User
      */
-    public function addConversationsMember(\AppBundle\Entity\ConversationMember $conversationsMember)
+    public function addConversationsMember(ConversationMember $conversationsMember)
     {
         $this->conversationsMember[] = $conversationsMember;
 
@@ -261,9 +263,9 @@ class User extends BaseUser
     /**
      * Remove conversationsMember
      *
-     * @param \AppBundle\Entity\ConversationMember $conversationsMember
+     * @param ConversationMember $conversationsMember
      */
-    public function removeConversationsMember(\AppBundle\Entity\ConversationMember $conversationsMember)
+    public function removeConversationsMember(ConversationMember $conversationsMember)
     {
         $this->conversationsMember->removeElement($conversationsMember);
     }

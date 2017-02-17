@@ -40,7 +40,7 @@ class Work
      *
      * @ORM\Column(name="has_attachment", type="boolean")
      */
-    private $has_attachment;
+    private $hasAttachment;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Homework", inversedBy="works")
@@ -122,7 +122,7 @@ class Work
      */
     public function setHasAttachment($hasAttachment)
     {
-        $this->has_attachment = $hasAttachment;
+        $this->hasAttachment = $hasAttachment;
 
         return $this;
     }
@@ -134,17 +134,17 @@ class Work
      */
     public function getHasAttachment()
     {
-        return $this->has_attachment;
+        return $this->hasAttachment;
     }
 
     /**
      * Set homework
      *
-     * @param \AppBundle\Entity\Homework $homework
+     * @param Homework $homework
      *
      * @return Work
      */
-    public function setHomework(\AppBundle\Entity\Homework $homework = null)
+    public function setHomework(Homework $homework = null)
     {
         $this->homework = $homework;
 
@@ -154,7 +154,7 @@ class Work
     /**
      * Get homework
      *
-     * @return \AppBundle\Entity\Homework
+     * @return Homework
      */
     public function getHomework()
     {
@@ -164,11 +164,11 @@ class Work
     /**
      * Set author
      *
-     * @param \AppBundle\Entity\User $author
+     * @param User $author
      *
      * @return Work
      */
-    public function setAuthor(\AppBundle\Entity\User $author = null)
+    public function setAuthor(User $author = null)
     {
         $this->author = $author;
 
@@ -178,7 +178,7 @@ class Work
     /**
      * Get author
      *
-     * @return \AppBundle\Entity\User
+     * @return User
      */
     public function getAuthor()
     {

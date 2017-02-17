@@ -5,8 +5,16 @@ namespace AppBundle\Controller;
 use Exception;
 use FOS\RestBundle\Controller\FOSRestController;
 
+/**
+ * Class ExceptionController
+ * @package AppBundle\Controller
+ */
 class ExceptionController extends FOSRestController
 {
+    /**
+     * @param Exception $exception
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function showAction(Exception $exception)
     {
         $data = [
