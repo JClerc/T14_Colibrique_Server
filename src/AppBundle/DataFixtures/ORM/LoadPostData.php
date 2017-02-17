@@ -2,7 +2,6 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
-
 use AppBundle\Entity\Post;
 
 class LoadPostData extends AbstractLoader

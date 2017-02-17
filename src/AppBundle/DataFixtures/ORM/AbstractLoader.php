@@ -2,7 +2,6 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
-
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -24,7 +23,7 @@ abstract class AbstractLoader extends AbstractFixture implements OrderedFixtureI
         $manager->flush();
     }
 
-    protected abstract function getData();
+    abstract protected function getData();
 
     private function populate($prefix, $entity, $data)
     {

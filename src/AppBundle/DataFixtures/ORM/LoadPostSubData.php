@@ -2,7 +2,6 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
-
 use AppBundle\Entity\PostComment;
 use AppBundle\Entity\PostVisibility;
 

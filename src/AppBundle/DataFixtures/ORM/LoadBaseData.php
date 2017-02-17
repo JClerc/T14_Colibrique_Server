@@ -2,7 +2,6 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
-
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Promotion;
 use AppBundle\Entity\UserType;
