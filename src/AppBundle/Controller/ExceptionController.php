@@ -15,7 +15,7 @@ class ExceptionController extends FOSRestController
      * @param Exception $exception
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showAction(Exception $exception)
+    public function handle(Exception $exception)
     {
         $data = [
             'error' => [
