@@ -25,6 +25,10 @@ class LoadClientData extends AbstractFixture implements OrderedFixtureInterface,
         $client->setRedirectUris([]);
         $client->setAllowedGrantTypes(['password']);
         $clientManager->updateClient($client);
+
+        echo PHP_EOL . '  * Created an OAuth2 client:' . PHP_EOL;
+        echo '  - client_id: ' . $client->getPublicId() . PHP_EOL;
+        echo '  - client_secret: ' . $client->getSecret() . PHP_EOL . PHP_EOL;
     }
 
     public function getOrder()
