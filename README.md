@@ -28,3 +28,9 @@ sf code:lint
 sf code:test
 # as alias of: vendor/phpunit/phpunit/phpunit src
 ```
+
+## API documentation
+
+The OAuth2 endpoint for authentication is `/oauth/v2/token`.
+
+For the documentation of the other methods, take a look at `/api/doc`.
