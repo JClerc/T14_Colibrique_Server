@@ -69,7 +69,7 @@ class LoadClientData extends AbstractFixture implements OrderedFixtureInterface,
             $id = $client->getPublicId();
             if (strpos($id, '1_') !== 0) {
                 echo PHP_EOL.'  [!] Warning: client_id is not prefixed with "1_"!';
-                echo PHP_EOL.'  [!] Load data using: ./db_seed'.PHP_EOL.PHP_EOL;
+                echo PHP_EOL.'  [!] Load data using command: sf db:seed'.PHP_EOL.PHP_EOL;
             }
         }
     }

@@ -12,10 +12,7 @@ git clone https://github.com/JClerc/T14_Colibrique_Server.git
 cd T14_Colibrique_Server
 composer install
 # Install database
-sf doctrine:database:drop --if-exists --force
-sf doctrine:database:create
-sf doctrine:schema:update --force
-sf doctrine:fixtures:load --no-interaction
+sf db:seed
 # Start server
 sf server:run
 ```
