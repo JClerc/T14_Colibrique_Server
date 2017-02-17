@@ -21,7 +21,10 @@ sf server:run
 
 ```sh
 # Symfony code convention
-vendor/bin/phpcs --standard=vendor/escapestudios/symfony2-coding-standard/Symfony2 src
+sf code:lint
+# as alias of: vendor/bin/phpcs --standard=vendor/escapestudios/symfony2-coding-standard/Symfony2 src
+
 # Unit tests
-vendor/phpunit/phpunit/phpunit src
+sf code:test
+# as alias of: vendor/phpunit/phpunit/phpunit src
 ```

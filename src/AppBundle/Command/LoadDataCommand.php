@@ -9,6 +9,10 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Class LoadDataCommand
+ * @package AppBundle\Command
+ */
 class LoadDataCommand extends ContainerAwareCommand
 {
     protected function configure()
@@ -34,6 +38,7 @@ class LoadDataCommand extends ContainerAwareCommand
             if ($code !== 0) {
                 $output->writeln(['', ' [!] Got an error ! See output below:', '']);
                 $output->write($buffer->fetch());
+
                 return 1;
             }
             $progress->advance();
