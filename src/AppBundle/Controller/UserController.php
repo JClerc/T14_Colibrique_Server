@@ -2,41 +2,29 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\User;
-use FOS\RestBundle\Context\Context;
-use FOS\RestBundle\Controller\FOSRestController;
 use JMS\Serializer\Annotation as Serializer;
 
-class PostController extends FOSRestController
+class UserController extends AbstractController
 {
-    /**
-     * @return User
-     */
-    protected function getUser()
+    public function getProfileAction()
     {
-        return parent::getUser();
+        return $this->respond(
+            [
+                'profile' => $this->getUser(),
+            ],
+            ['user_show']
+        );
     }
 
-    public function getPostsAction()
+    public function getUserAction($id)
     {
-        $user = $this->getUser();
-        $type = $user->getUserType();
+        $user = $this->getDoctrine()->getRepository('AppBundle:User')->find($id);
 
-        $postVisibilityRepository = $this->getDoctrine()->getRepository('AppBundle:PostVisibility');
-        $postVisibilities = $postVisibilityRepository->findBy(['visible_by' => $type]);
-
-        $posts = [];
-
-        foreach ($postVisibilities as $postVisibility) {
-            $posts[] = $postVisibility->getPost();
-        }
-
-        $view = $this->view([
-            'posts' => $posts,
-        ]);
-
-        $view->setContext((new Context())->setGroups(['Default']));
-
-        return $this->handleView($view);
+        return $this->respond(
+            [
+                'user' => $user,
+            ],
+            ['user_show']
+        );
     }
 }
