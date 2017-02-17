@@ -27,4 +27,11 @@ class AbstractController extends FOSRestController
 
         return $this->handleView($view);
     }
+
+    protected function validate($test, $message, $code = 0)
+    {
+        if (!$test) {
+            throw new \Exception($message, $code);
+        }
+    }
 }

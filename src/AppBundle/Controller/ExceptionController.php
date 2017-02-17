@@ -17,6 +17,6 @@ class ExceptionController extends FOSRestController
             ],
         ];
 
-        return $this->handleView($this->view($data));
+        return $this->handleView($this->view($data, 500));
     }
 }
