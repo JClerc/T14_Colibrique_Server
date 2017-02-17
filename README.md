@@ -19,3 +19,12 @@ sf doctrine:fixtures:load --no-interaction
 # Start server
 sf server:run
 ```
+
+## Test code compliance
+
+```sh
+# Symfony code convention
+vendor/bin/phpcs --standard=vendor/escapestudios/symfony2-coding-standard/Symfony2 src
+# Unit tests
+vendor/phpunit/phpunit/phpunit src
+```
