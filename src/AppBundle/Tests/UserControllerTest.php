@@ -3,16 +3,23 @@
 namespace AppBundle\Tests;
 
 /**
- * Class PostControllerTest
- * @package Tests\AppBundle\Controller
+ * Class UserControllerTest
+ * @package AppBundle\Tests
  */
-class UserControllerAbstract extends AbstractAuthCase
+class UserControllerTest extends AbstractAuthCase
 {
     /**
-     * Test posts
+     * Test users
      */
     public function test()
     {
-        list($client, $header) = $this->getClient();
+        $client = $this->authenticate();
+
+        $last = count($client->getContainer()->get('doctrine')->getRepository('AppBundle:User')->findAll());
+
+        $client->request('GET', '/api/v1/users/'.$last);
+
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertContains('@hetic.net', $client->getResponse()->getContent());
     }
 }

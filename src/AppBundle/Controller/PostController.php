@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\PostVisibility;
+use AppBundle\Entity\Post;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use JMS\Serializer\Annotation as Serializer;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
@@ -30,24 +30,31 @@ class PostController extends AbstractController
         $this->validate($page >= 1 && $page < 10000, 'Page is out of bounds.');
         $this->validate($count >= 1 && $count < 100, 'Count is out of bounds.');
 
+        $posts = [];
         $user = $this->getUser();
         $type = $user->getUserType();
 
+        // Get post by visibilities
         $postVisibilityRepository = $this->getDoctrine()->getRepository('AppBundle:PostVisibility');
+        $postVisibilities = $postVisibilityRepository->findBy(['visibleBy' => $type]);
+        foreach ($postVisibilities as $postVisibility) {
+            $post = $postVisibility->getPost();
+            $posts[$post->getId()] = $post;
+        }
 
-        $postVisibilities = $postVisibilityRepository->findBy(
-            ['visibleBy' => $type],
-            null,
-            $count,
-            ($page - 1) * $count
-        );
+        // Get post which user are its author
+        $authorPosts = $this->getDoctrine()->getRepository('AppBundle:Post')->findBy(['author' => $user]);
+        foreach ($authorPosts as $post) {
+            $posts[$post->getId()] = $post;
+        }
 
-        $posts = array_map(
-            function (PostVisibility $postVisibility) {
-                return $postVisibility->getPost();
-            },
-            $postVisibilities
-        );
+        // Sort in DESC order
+        usort($posts, function (Post $post1, Post $post2) {
+            return $post2->getPostedAt() <=> $post1->getPostedAt();
+        });
+
+        // Return only those needed
+        $posts = array_splice($posts, ($page - 1) * $count, $count);
 
         return $this->respond(
             [
