@@ -1,6 +1,6 @@
 # Colibrique
 
-Web Server for **[T14_Colibrique_Client](https://github.com/JClerc/T14_Colibrique_Client)**
+Web Server for **[T14_Colibrique_Angular](https://github.com/JClerc/T14_Colibrique_Angular)**
 
 ## Installation
 
