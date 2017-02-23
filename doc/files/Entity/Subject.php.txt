@@ -1,0 +1,235 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Subject
+ *
+ * @ORM\Table(name="subject")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\SubjectRepository")
+ */
+class Subject
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="label", type="string", length=100)
+     */
+    private $label;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="school_year", type="integer")
+     */
+    private $schoolYear;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="trimester", type="integer")
+     */
+    private $trimester;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(name="professor_id", referencedColumnName="id")
+     */
+    private $professor;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Promotion", inversedBy="subjects")
+     * @ORM\JoinColumn(name="promotion_id", referencedColumnName="id")
+     */
+    private $promotion;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Course", mappedBy="subject")
+     */
+    private $courses;
+
+    /**
+     * Subject constructor
+     */
+    public function __construct()
+    {
+        $this->courses = new ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set label
+     *
+     * @param string $label
+     *
+     * @return Subject
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * Get label
+     *
+     * @return string
+     */
+    public function getLabel()
+    {
+        return $this->label;
+    }
+
+    /**
+     * Set schoolYear
+     *
+     * @param integer $schoolYear
+     *
+     * @return Subject
+     */
+    public function setSchoolYear($schoolYear)
+    {
+        $this->schoolYear = $schoolYear;
+
+        return $this;
+    }
+
+    /**
+     * Get schoolYear
+     *
+     * @return int
+     */
+    public function getSchoolYear()
+    {
+        return $this->schoolYear;
+    }
+
+    /**
+     * Set trimester
+     *
+     * @param integer $trimester
+     *
+     * @return Subject
+     */
+    public function setTrimester($trimester)
+    {
+        $this->trimester = $trimester;
+
+        return $this;
+    }
+
+    /**
+     * Get trimester
+     *
+     * @return int
+     */
+    public function getTrimester()
+    {
+        return $this->trimester;
+    }
+
+    /**
+     * Set professor
+     *
+     * @param User $professor
+     *
+     * @return Subject
+     */
+    public function setProfessor(User $professor = null)
+    {
+        $this->professor = $professor;
+
+        return $this;
+    }
+
+    /**
+     * Get professor
+     *
+     * @return User
+     */
+    public function getProfessor()
+    {
+        return $this->professor;
+    }
+
+    /**
+     * Set promotion
+     *
+     * @param Promotion $promotion
+     *
+     * @return Subject
+     */
+    public function setPromotion(Promotion $promotion = null)
+    {
+        $this->promotion = $promotion;
+
+        return $this;
+    }
+
+    /**
+     * Get promotion
+     *
+     * @return Promotion
+     */
+    public function getPromotion()
+    {
+        return $this->promotion;
+    }
+
+    /**
+     * Add course
+     *
+     * @param Course $course
+     *
+     * @return Subject
+     */
+    public function addCourse(Course $course)
+    {
+        $this->courses[] = $course;
+
+        return $this;
+    }
+
+    /**
+     * Remove course
+     *
+     * @param Course $course
+     */
+    public function removeCourse(Course $course)
+    {
+        $this->courses->removeElement($course);
+    }
+
+    /**
+     * Get courses
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCourses()
+    {
+        return $this->courses;
+    }
+}
+

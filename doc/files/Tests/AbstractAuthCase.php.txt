@@ -1,0 +1,47 @@
+<?php
+
+namespace AppBundle\Tests;
+
+use Symfony\Bundle\FrameworkBundle\Client;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+
+/**
+ * Class AbstractAuthCase
+ * @package AppBundle\Tests
+ */
+abstract class AbstractAuthCase extends WebTestCase
+{
+    /**
+     * @param string $usernameOrEmail
+     * @return Client
+     */
+    protected function authenticate($usernameOrEmail = null)
+    {
+        $client = $this->createClient();
+        $clientManager = $client->getContainer()->get('fos_oauth_server.client_manager.default');
+        $auth = $clientManager->findClientBy([]);
+
+        if (!$usernameOrEmail) {
+            $doctrine = $client->getContainer()->get('doctrine');
+            $usernameOrEmail = $doctrine->getRepository('AppBundle:User')->findOneBy([])->getEmail();
+        }
+
+        $client->request(
+            'POST',
+            '/oauth/v2/token',
+            [
+                'grant_type' => 'password',
+                'client_id' => $auth->getPublicId(),
+                'client_secret' => $auth->getSecret(),
+                'username' => $usernameOrEmail,
+                'password' => 'root',
+            ]
+        );
+
+        $json = json_decode($client->getResponse()->getContent(), true);
+        $client->setServerParameter('HTTP_Authorization', 'Bearer '.$json['access_token']);
+
+        return $client;
+    }
+}
+

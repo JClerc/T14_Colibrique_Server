@@ -1,0 +1,25 @@
+<?php
+
+namespace AppBundle\EventListener;
+
+use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+
+/**
+ * Class EventListener
+ * @package AppBundle\EventListener
+ */
+class EventListener
+{
+    /**
+     * @param FilterResponseEvent $event
+     */
+    public function onKernelResponse(FilterResponseEvent $event)
+    {
+        $event->getResponse()->headers->add(
+            [
+                'Access-Control-Allow-Origin' => '*',
+            ]
+        );
+    }
+}
+
