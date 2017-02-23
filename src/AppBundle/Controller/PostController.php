@@ -3,9 +3,13 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Post;
+use AppBundle\Entity\PostVisibility;
+use AppBundle\Form\PostType;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use JMS\Serializer\Annotation as Serializer;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class PostController
@@ -61,6 +65,38 @@ class PostController extends AbstractController
                 'posts' => $posts,
             ]
         );
+    }
+
+
+    /**
+     * @ApiDoc(
+     *     section="Posts",
+     *     description="Add a post",
+     * )
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function postPostsAction(Request $request)
+    {
+        $dataModifier = function ($data) {
+            $user = $this->getUser();
+            $data['author'] = $user->getId();
+            $data['promotion'] = $user->getPromotion()->getId();
+
+            return $data;
+        };
+
+        $onSuccess = function (Post $post) {
+            $postVisibility = new PostVisibility();
+            $postVisibility->setPost($post);
+            $postVisibility->setVisibleBy($this->getUser()->getUserType());
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($postVisibility);
+            $em->flush();
+        };
+
+        return $this->processForm(new Post(), PostType::class, $request, $dataModifier, $onSuccess);
     }
 
     /**

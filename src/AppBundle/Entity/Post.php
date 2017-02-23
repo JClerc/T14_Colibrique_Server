@@ -4,14 +4,16 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Post
  *
  * @ORM\Table(name="post")
+ * @ORM\HasLifecycleCallbacks
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PostRepository")
  */
-class Post
+class Post implements EntityInterface
 {
     /**
      * @var int
@@ -26,6 +28,7 @@ class Post
      * @var string
      *
      * @ORM\Column(name="content", type="text")
+     * @Assert\NotBlank
      */
     private $content;
 
@@ -60,12 +63,14 @@ class Post
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
+     * @Assert\NotBlank
      */
     private $author;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * @Assert\NotBlank
      */
     private $category;
 
@@ -88,6 +93,16 @@ class Post
         $this->comments = new ArrayCollection();
     }
 
+
+    /**
+     * Gets triggered only on insert
+     *
+     * @ORM\PrePersist
+     */
+    public function onPrePersist()
+    {
+        $this->postedAt = new \DateTime("now");
+    }
 
     /**
      * Get id
