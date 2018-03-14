@@ -1,6 +1,6 @@
 {
-    "name": "jonathan/.checkout",
-    "license": "proprietary",
+    "name": "colibrique-server",
+    "license": "GPL-3.0-only",
     "type": "project",
     "autoload": {
         "psr-4": {
