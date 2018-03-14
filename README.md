@@ -1,15 +1,45 @@
-# Colibrique
+<h1 align="center">
+  <img alt="colibrique-server" width="652" src="https://jclerc.github.io/assets/repos/banner/colibrique-server.jpg">
+  <br>
+</h1>
 
-Web Server for **[T14_Colibrique_Angular](https://github.com/JClerc/T14_Colibrique_Angular)**
+<p align="center">
+  <img alt="made for: school" src="https://jclerc.github.io/assets/static/badges/made-for/school.svg">
+  <img alt="language: php" src="https://jclerc.github.io/assets/static/badges/language/php.svg">
+  <img alt="made in: 2017" src="https://jclerc.github.io/assets/static/badges/made-in/2017.svg">
+  <br>
+  <sub>A platform to help students & teachers in their daily tasks.</sub>
+</p>
+<br>
 
-## Installation
+## Features
 
-*Warning: read the commands before copy/pasting them!*
+- [x] OAuth2 authentication
+- [x] REST API for users, posts, ...
+- [x] Generated API documentation
+- [x] Linting and unit testing
+
+## Stack used
+
+- Symfony `3.2`
+- Doctrine `2.5`
+- FOSUserBundle `2.0`
+- PHP `5.6`
+
+## Getting started
+
+#### Requirements
+
+- `composer`
+- Apache server with PHP 5.6+
+- A recent MySQL server
+
+#### Installation
 
 ```sh
-# Clone project
-git clone https://github.com/JClerc/T14_Colibrique_Server.git
-cd T14_Colibrique_Server
+git clone https://github.com/jclerc/colibrique-server.git
+cd colibrique-server
+# Install dependencies
 composer install
 # Install database
 sf db:seed
@@ -17,8 +47,9 @@ sf db:seed
 sf server:run
 ```
 
-## Test code compliance
+## Notes
 
+#### Testing code compliance
 ```sh
 # Symfony code convention
 sf code:lint
@@ -29,8 +60,7 @@ sf code:test
 # as alias of: vendor/phpunit/phpunit/phpunit src
 ```
 
-## API documentation
+#### API documentation
 
-The OAuth2 endpoint for authentication is `/oauth/v2/token`.
-
-For the documentation of the other methods, take a look at `/api/doc`.
+- The OAuth2 endpoint for authentication is `/oauth/v2/token`
+- For the documentation of the other methods, take a look at `/api/doc`
